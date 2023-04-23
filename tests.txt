@@ -1,0 +1,11 @@
+68) kursori tabulaciis shedeg poziciaze - /t
+38) /t - 
+39) iostream - shetana gamotana
+40) cin cout - shetana gamotana
+41) sqrt - root
+16) main - romlitac iwyeba
+8) ra saxis komentari arsebobs  -  
+24) cin - mon shetana
+25) cout - monacemta gamotana
+15) include - ?
+21) << gamotanis operacia?

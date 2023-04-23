@@ -1,0 +1,871 @@
+
+15) შეადგინეთ პროგრამა C++ , მოცემულია კვადრატული მატრიცა B[5x5]. შეადგინეთ პროგრამა რომელიც ცალ-ცალკე გამოთვლის მატრიცას არამთავარი დიაგონალის ზემოთ და ქვემოთ განლაგებული ელემენტების ნამრავლებს, 
+მიღებულ შედეგებს ერთმანეთს შეადარებს და დაბეჭდავს მატრიცას და ყველა ეტაპის შედეგს.
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+const int rows=5, columns=5;
+int a[rows][columns], multiplyTop =1, multiplyBottom=1;
+
+int i, j;
+cout<<"\nCurrent matrix:"<<endl;
+
+srand(time(0));
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+a[i][j]=1+rand()%2;
+if (i + j < 4){
+    multiplyTop *= a[i][j];
+}
+else if (i + j > 4){
+    multiplyBottom *= a[i][j];
+}
+cout<<setw(5)<<a[i][j];
+}
+cout<<endl;
+}
+cout << "top: " << multiplyTop << endl;
+cout << "bottom: " << multiplyBottom << endl;
+
+if(multiplyTop > multiplyBottom){
+    cout << "metia top: " << multiplyTop << endl;
+}else if(multiplyTop < multiplyBottom){
+       cout << "metia bottom: " << multiplyBottom << endl;
+}else{
+     cout << "tolebia" << endl;
+}
+return 0;
+
+}
+
+14)შეადგინეთ პროგრამა C++ მოცემულია ვადრატული მატრიცა A[4x4]. შეადგინეთ პროგრამა რომელიც ცალცალკე გამოთვლის მატრიცის მთავარი დიაგონალის ზემოთ და ქვემოთ განლაგებული ელემენტების საშუალო არითმეტიკული მნიშვნელობებს, 
+მიღებულ შედეგებს ერთმანეთს შეადარებს და დაბეჭდავს მატრიცას და ყველა ეტაპის შედეგს.
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+const int rows=4, columns=4;
+int a[rows][columns], numTop = 0, numBottom = 0, max;
+double sumTop =0.0, sumBottom=0.0;
+
+int i, j;
+cout<<"\nCurrent matrix:"<<endl;
+
+srand(time(0));
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+a[i][j]=1+rand()%2;
+if (i < j){
+    numTop +=1;
+    sumTop += a[i][j];
+}
+else if (i > j){
+    numBottom +=1;
+    sumBottom += a[i][j];
+}
+cout<<setw(5)<<a[i][j];
+}
+cout<<endl;
+}
+
+cout << "top avg: " << sumTop/numTop << endl;
+cout << "bottom avg: " << sumBottom/numBottom << endl;
+
+if(sumTop/numTop > sumBottom/numBottom){
+    cout << "metia top: " << sumTop/numTop << endl;
+}else if(sumTop/numTop < sumBottom/numBottom){
+       cout << "metia bottom: " << sumBottom/numBottom << endl;
+}else{
+     cout << "tolebia" << endl;
+}
+return 0;
+}
+
+13) შეადგინეთ პროგრამა C++, მოცემულია კვადრატული მატრიცა D[4x4]. შეადგინეთ პროგრამა რომელიც გამოთვლის მატრიცის ლუწი მნიშვნელობის მქონე კენტინდექსებიანი ელემენტების კვადრატების ჯამს
+ და დათვლის იმ ელემენტების რაოდენობას, რომელიც აღნიშნულ პირობას არ აკმაყოფილებენ.
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+const int rows=4, columns=4;
+int A[rows][columns], i, j, sum = 0, count = 0;
+cout<<"\nCurrent matrix:"<<endl;
+srand(time(0));
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=1+rand()%2;
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+
+for(int i=0; i<4; i++) {
+  for(int j=0; j<4; j++) {
+     if(A[i][j] % 2 == 0 && j% 2 == 1 ) {
+        sum += pow(A[i][j], 2);
+     } else {
+        count++;
+     }
+  }
+}
+cout << "kentindexsiani luwi elementebis kvadratebis jamia: " << sum << endl;
+cout << "others count: " << count << endl;
+return 0;
+
+}
+
+12) მოცემულია კვადრატული მატრიცა M[5x5]. შეადგინეთ პროგრამა, რომელიც გამოთვლის მატრიცის იმ ელემენტების ნამრავლსა და საშუალო არითმეტიკულს რომელთაც გააჩნიათ ლუწი მნიშვნელობის
+ მქონე სტრიქონის ინდექსის ნომრები და კენტი მნიშვნელობის მქონე სვეტის ინდექსის ნომრები.
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+const int rows=5, columns=5;
+int A[rows][columns], count = 0;
+double sum=0, multipy = 1.0;
+
+int i, j;
+cout<<"\nCurrent matrix:"<<endl;
+
+srand(time(0));
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=1+rand()%3;
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+
+for (int i = 0; i < rows; i += 2) {
+        for (int j = 1; j < columns; j += 2) {
+            
+                count++;
+                multipy *= A[i][j];
+                sum += A[i][j];
+            
+        }
+    }
+    double avg = sum/count;
+    cout << "multipy: " << multipy << endl;
+    cout << "sum: " << sum << endl;
+    cout << "count: " << count << endl;
+    cout << "avg: " << avg << endl;
+    
+return 0;
+}
+ 
+11) მოცემულია 2 კვადრატული მარტიცა: A[4X4] და B[4X4]. შეადგინეთ პროგრამა, რომელიც გამოითვლის თითოეული მატრიცის არაუარყოფითი ელემენტების საშუალო
+არითმეტიკულს, მოძბენის მათ შორის უდიდესს და დაბეჭდავს მიღებულ შედეგს.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+
+const int rows=4;
+const int columns=4;
+
+int a[rows][columns], max_avg;
+int i, j;
+double s, n, avg1, avg2;
+cout<<"\nCurrent matrix:"<<endl;
+
+// masivis sheqmna
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+a[i][j]=-10+rand()%21;
+if(a[i][j]>=0){
+    n++;
+    s+=a[i][j];
+}
+cout<<setw(5)<<a[i][j];
+}
+avg1 = s/n;
+cout<<endl;
+}
+cout<<"sum 1 = "<<s<<setw(5)<<"";
+cout<<"count 1 = "<<n<<setw(5)<<"";
+cout<<"average 1 = "<<avg1<<setw(5)<<"";
+
+cout<<endl;
+
+cout<<"\nCurrent matrix 2:"<<endl;
+s = 0.0;
+n = 0.0;
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+a[i][j]=-10+rand()%21;
+if(a[i][j]>=0){
+    n++;
+    s+=a[i][j];
+}
+cout<<setw(5)<<a[i][j];
+}
+avg2 = s/n;
+cout<<endl;
+}
+cout<<"sum 2 = "<<s<<setw(5)<<"";
+cout<<"count 2 = "<<n<<setw(5)<<"";
+cout<<"avarage 2 = "<<avg2<<setw(5)<<"";
+
+cout<<endl;
+
+if(avg1 < avg2){
+    cout<<"max avarage = "<<avg2<< " ";
+}else if(avg2 < avg1){
+    cout<<"max avarage = "<<avg2<< " ";
+}
+else{
+    cout<<"max avarage does not exist!";
+}
+return 0;
+}
+
+10) მოცემულია 2 კვადრატული მარტიცა: A[4X4]. შეადგინეთ პროგრამა, რომელიც ცალ-ცალკე გამოითვლის მატრიცის ლუწი მნიშვნელობის
+მქონე ელემენტების კუბების ჯამს და დანარჩენი ელემენტების ნახვარჯამს.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+
+const int rows=4;
+const int columns=4;
+
+int a[rows][columns], max_avg;
+int i, j;
+double sum_cubes,sum_others;
+cout<<"\nCurrent matrix:"<<endl;
+
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+a[i][j]=1+rand()%2;
+if(a[i][j] % 2 ==0){
+    sum_cubes += pow(a[i][j], 3);
+}else{
+    sum_others += a[i][j];
+}
+cout<<setw(5)<<a[i][j];
+}
+cout<<endl;
+}
+cout<<"sum cubes = "<<sum_cubes<<setw(5)<<"";
+cout<<"half sum = "<<sum_others/2<<setw(5)<<"";
+
+cout<<endl;
+
+return 0;
+}
+
+9) მოცემულია მატრიცა M[3x5]. შეადგინეთ პროგრამა, რომელიც ცალ-ცელკე გამოთვლის მატრიცის კენტიინდექსებიანი ელემნტების საშუალო არითმეტუკულს და დანარჩენი ელემნტების ნამრავლს.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+
+const int rows=3;
+const int columns=5;
+
+int a[rows][columns], max_avg;
+int i, j;
+double sum_odd, count_odd,multiply_others = 1.0;
+cout<<"\nCurrent matrix:"<<endl;
+
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+a[i][j]=1+rand()%2;
+if(j % 2 == 1){
+    sum_odd += a[i][j];
+    count_odd++;
+}else{
+    multiply_others *= a[i][j];
+}
+cout<<setw(5)<<a[i][j];
+}
+cout<<endl;
+}
+cout<<"avarage of odd index = "<<sum_odd/count_odd<<setw(5)<<"";
+cout<<"others' mult = "<<multiply_others<<setw(5)<<"";
+
+cout<<endl;
+
+return 0;
+}
+
+8) მოცემულია მატრიცა B[3x4]. შეადგინეთ პროგრამა, რომელიც ადგილებს შეუცვლის მატრიცის მეორე სვეტსა და მოდულით უმცირესი მნიშნელობის მქონე ელემენტის შემცველ სვეტს.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+const int rows=3;
+const int columns=5;
+int A[rows][columns], min_index, temp;
+int i, j;
+double sum_odd, count_odd,multiply_others = 1.0;
+
+cout<<"\nCurrent matrix:"<<endl;
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=1+rand()%9;
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+int min = abs(A[0][0]);
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+if(abs(A[i][j]) < min){
+    min = abs(A[i][j]);
+    min_index = j;
+}
+}
+cout<<endl;
+}
+
+cout<<"min index = "<<min_index<<setw(5)<<"";
+cout<<"min = "<<min<<setw(5)<<"";
+cout<<endl;
+
+for (i = 0; i < rows; i++)
+{
+    temp = A[i][min_index];
+    A[i][min_index] = A[i][1];
+    A[i][1] = temp;
+}
+
+cout << "\nModified matrix:" << endl;
+for (i = 0; i < rows; i++)
+{
+    for (j = 0; j < columns; j++)
+    {
+        cout << setw(5) << A[i][j];
+    }
+    cout << endl;
+}
+cout << endl;
+
+return 0;
+}
+
+7) მოცემულია კვადრატული მატრიცა С[3x3]. შეადგინეთ პროგრამა, რომელიც მოახდენს მატრიცის ტრანსპონირებას და დაბეჭდავს С4 მატრიცას.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+const int rows=3;
+const int columns=3;
+int A[rows][columns];
+int i, j;
+
+cout<<"\nCurrent matrix:"<<endl;
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=1+rand()%9;
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+cout<<"\nTransormed matrix:"<<endl;
+
+for (i = 0; i < rows; i++) {
+  for (j = i+1; j < columns; j++) {
+    int temp = A[i][j];
+    A[i][j] = A[j][i];
+    A[j][i] = temp;
+  }
+}
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+
+return 0;
+}
+
+6) მოცემულია კვადრატული მატრიცა B[3x3]. შეადგინეთ პროგრამა, რომელიც გამოთვლის მატრიცის ელემენტების ნამრავლს სტრიქონების მიხედვით და დავეჭდავს იმ სტრიქონის ელემნტებს, რომელთა ნამრავლიც მინიმალურია.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+const int rows=3;
+const int columns=3;
+int B[rows][columns], min_multiply, min_row_index = 0, min_row;
+int i, j;
+
+// create
+srand(time(0));
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+B[i][j]=1+rand()%9;
+}
+cout<<endl;
+}
+cout<<endl;
+
+// min mult
+min_multiply = B[0][0] * B[0][1] * B[0][2];
+for (int i = 0; i < 3; i++) {
+    int row_multiply = 1;
+    for (int j = 0; j < 3; j++) {
+        row_multiply *= B[i][j];
+    }
+    if (row_multiply < min_multiply) {
+        min_multiply = row_multiply;
+        row_multiply = i;
+    }
+}
+
+// print
+cout<<"\nCurrent matrix:"<<endl;
+for (int i = 0; i < 3; i++) {
+    int row_multiply = 1;
+    for (int j = 0; j < 3; j++) {
+        row_multiply *= B[i][j];
+        cout << setw(5) << B[i][j] << " ";
+    }
+    cout << "= " << row_multiply << endl;
+}
+
+
+
+///////
+
+es jobia
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    const int rows=3;
+    const int columns=3;
+    int B[rows][columns], max_sum, min_row_index = 0, min_row;
+    int i, j;
+
+    // create
+    srand(time(0));
+    for(i=0; i<rows; i++)
+    {
+        for(j=0; j<columns; j++)
+        {
+            B[i][j]=1+rand()%9;
+            cout << setw(5) << B[i][j] << " ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+
+    int min_multiply = 0;
+    for(i=0; i<rows; i++)
+    {
+        int row_multiply = 1;
+        for(j=0; j<columns; j++)
+        {
+            row_multiply *= B[i][j];
+        }
+        cout << "Row " << i << " multiplication: " << row_multiply << endl;
+
+        if(row_multiply < min_multiply)
+        {
+            min_multiply = row_multiply;
+            min_row_index = i;
+        }
+    }
+
+    // print min row
+    cout << "Min row elements: ";
+    for(j=0; j<columns; j++)
+    {
+        cout << B[min_row_index][j] << " ";
+    }
+    cout << endl;
+
+    return(0);
+}
+
+///////
+
+// print min row
+cout << "Row with min mult: ";
+for (int j = 0; j < 3; j++) {
+    cout << B[min_row_index][j] << " ";
+}
+cout << endl;
+return 0;
+}
+
+5) მოცემულია კვადრატული მატრიცა N[4x4]. შეადგინეთ პროგრამა, რომელიც გამოთვლის მატრიცის ელემტებსი ჯამებს სვეტების მიხედვით და დაბეჭდავს იმ სვეტის ელემენტებს, რომელთა ჯამიც მაქსიმალურია.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+    const int rows = 3;
+    const int columns = 3;
+    int B[rows][columns], max_sum = 0, max_col_index = 0;
+    int col_sums[columns] = {0};
+    int i, j;
+
+    // create 
+    srand(time(0));
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < columns; j++) {
+            B[i][j] = 1 + rand() % 9;
+            cout << setw(5) << B[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    for (j = 0; j < columns; j++) {
+        for (i = 0; i < rows; i++) {
+            col_sums[j] += B[i][j];
+        }
+        
+        cout << "Sum of column " << j + 1 << " is: " << col_sums[j] << endl;
+        if (col_sums[j] > max_sum) {
+            max_sum = col_sums[j];
+            max_col_index = j;
+        }
+    }
+
+    // print max col
+    cout << "\nColumn " << max_col_index + 1 << " has the maximum sum of " << max_sum << " and its elements are: ";
+    for (i = 0; i < rows; i++) {
+        cout << B[i][max_col_index] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+4) მოცემულია კვადრატული მატრიცა M[3x3]. შეადგინეთ პროგრამა, რომელიც ადგილებს შეუცვლის იმ სვეტსა და სტრიქონს, რომელთა გადაკვეთაზეც იმყოფება მატრიცის უდიდესი მნიშვნელობის მქონე ელემენტი.
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    const int rows = 3;
+    const int columns = 3;
+    int a[rows][columns], max, temp;
+
+    // create
+    cout << "Current matrix:\n";
+    srand(time(0));
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            a[i][j] = 1 + rand() % 20;
+            cout << setw(5) << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    // find max element 
+    max = a[0][0];
+    int max_i = 0, max_j = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (a[i][j] > max) {
+                max = a[i][j];
+                max_i = i;
+                max_j = j;
+            }
+        }
+    }
+
+    cout << "Max element: " << max << endl;
+    cout << "Max element row index: " << max_i << endl;
+    cout << "Max element column index: " << max_j << endl;
+
+    // swap 
+    for (int i = 0; i < rows; i++) {
+        temp = a[i][max_j];
+        a[i][max_j] = a[max_i][i];
+        a[max_i][i] = temp;
+    }
+
+    // new
+    cout << "\nUpdated matrix:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            cout << setw(5) << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+
+3) მოცემულია მატრიცა C[2x4]. შეადგინეთ პროგრამა, რომელიც გამოთვლის მატრიცის დადებითი ელემენტების ჯამს, უარყოფითი მნიშნელობის მქონე ელემნტების ნამრავლს და მოძებნის მათ შორის უმცირეს შედეგს.
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+const int rows=2, columns=4;
+int A[rows][columns], i, j, sum_positive = 0, mult_negative = 1, max;
+
+cout<<"\nCurrent matrix:"<<endl;
+srand(time(0));
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=-10+rand()%32;
+ if(A[i][j] >= 0) {
+        sum_positive += A[i][j];
+     } else {
+        mult_negative *=  A[i][j];
+     }
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+if(mult_negative == 1) {
+    mult_negative = 0;
+}
+cout << "positives' sum: " << sum_positive << endl;
+cout << "negatives' mult: " << mult_negative << endl;
+if(sum_positive<mult_negative){
+    cout << "min = " << sum_positive << endl;
+}else if(sum_positive>mult_negative){
+        cout << "min = " << mult_negative << endl;
+}else cout << "equals"<< endl;
+return 0;
+}
+
+2) მოცემულია კვადრატული მატრიცა B[4x4]. შეადგინეთ პროგრამა, რომელიც დაბეჭდავს მატრიცის მოდულით უდიდესი მნიშვნელობის მქონე ელემენტს და ამ ელემენტის შემცველ სვეტს.
+
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+const int rows=3;
+const int columns=5;
+int A[rows][columns], max_index, temp;
+int i, j;
+
+cout<<"\nCurrent matrix:"<<endl;
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=1+rand()%9;
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+int max = abs(A[0][0]);
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+if(abs(A[i][j]) > max){
+    max = abs(A[i][j]);
+    max_index = j;
+}
+}
+cout<<endl;
+}
+
+cout<<"max = "<<max<<setw(5)<<"";
+cout<<endl;
+
+cout << "\nColumn " << max_index + 1 << " has the maximum elemen - " << max << " and its elements are: ";
+for (i = 0; i < rows; i++) {
+    cout << A[i][max_index] << " ";
+}
+cout << endl;
+
+return 0;
+}
+
+1) მოცემულია მატრიცა A[5x5]. შეადგინეთ პროგრამა, რომელიც მატრიცის უარყოფითი მნოშვნელობის მქონე ელემენტებს შეცვლის ერთით და გამოთვლის მიღებული მატრიცის ელემნტების საშუალო არითმეტიკულს
+
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+const int rows=5;
+const int columns=5;
+int A[rows][columns];
+double sum = 0.0;
+int i, j;
+
+cout<<"\nCurrent matrix:"<<endl;
+srand(time(0));
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+A[i][j]=-10+rand()%31;
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+cout<<"\n new matrix:"<<endl;
+
+for(i=0; i<rows; i++)
+{
+for(j=0; j<columns; j++)
+{
+if(A[i][j]<0) A[i][j] =1;
+sum += A[i][j];
+cout<<setw(5)<<A[i][j];
+}
+cout<<endl;
+}
+cout<<endl;
+
+
+cout<<"sum  = "<<sum<<setw(5)<<"";
+cout<<"count  = "<<(columns*rows)<<setw(5)<<"";
+cout<<"avg  = "<<sum/(columns*rows)<<setw(5)<<"";
+
+
+return 0;
+}
+
+
+
+
+

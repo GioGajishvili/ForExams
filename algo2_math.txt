@@ -1,0 +1,225 @@
+1) შეადგინეთ  პროგრამა C++ რომელიც გამოთვლის y=x**4 – 2(x**2) +7 ფუნქციის მნიშვნელობებს და წარმოადგენს ფუნქციისა და არგუმენტების მნიშვნელობათა ცხრილს სადაც x არგუმენტი   
+   [-4;8] ინტერვალში იცვლება h=1.5 ბიჯით. ამასთან გამოთვალეთ ფუნქციის უარყოფითი მნიშვნელობების ნამრავლი.
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    const double step = 1.5; 
+    double x = -4.0, y, multiply = 1.0; 
+    int negative_values = 0;
+    while (x <= 8.0)
+    {
+        y = pow(x, 4) - 2 * pow(x, 2) + 7;
+        cout << "("<< x << setw(2) <<";"<< setw(2) << y <<")" << endl;
+        if (y < 0)
+        {
+            negative_values +=1;
+            multiply *= y;
+        }
+       x += step; 
+    }
+    if(negative_values == 0){
+        cout << "There are not negative values" << endl;
+    }else{
+        cout << "multiply of negative y values: " << multiply << endl;
+    }
+    
+    return 0;
+}
+
+2) შეადგინეთ პროგრამა C++ რომელიც კონსოლზე წარმოადგენს ერთიდან 20-ის ჩათვლით ყველა ნატურალური რიცხვის კვადრატის მნიშვნელობას, გარდა 5-ის 10-ის და 15-ის კვადრატებისა (გამოიყენეთ continue ოპერატორი).
+
+#include <iostream>
+using namespace std;
+int main() {
+   for (int i = 1; i <= 20; i++) {
+      if (i == 5 || i == 10 || i == 15) {
+         continue;
+      }
+      cout << "The square of " << i << " is: " << i * i << endl;
+   }
+   return 0;
+}
+
+3)შეადგინეთ პროგრამა C++, do/while ციკლის ოპერატორის გამოყენებით შეადგინეთ პროგრამა, რომელიც გამოთვლის y = x**2 – 15 ფუნქციის მნიშვნელობებს და წარმოადგენს ფუნქციისა და არგუმენტების მნიშვნელობათა ცხრილს სადაც x არგუმენტები [-2; 8]
+ ინტერვალში იცვლება h=1.5 ბიჯით ამასთან გამოთვალეთ დადებითი მნიშვნელობების საშუალო არითმეტიკული.
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    const double step = 1.5; 
+    double x = -2.0, y, sum_pos = 1.0; 
+    int pos_values = 0;
+    
+     do {
+        y = pow(x, 2) - 15;
+        cout << "("<< x << setw(2) <<";"<< setw(2) << y <<")" << endl;
+
+        if (y > 0) {
+            sum_pos += y;
+            pos_values++;
+        }
+
+        x += step;
+    } while (x <= 8);
+
+     if(pos_values == 0){
+        cout << "There are not positive values" << endl;
+    }else{
+            double avg = sum_pos / pos_values;
+         cout << "sum of positive values: " << sum_pos << endl;
+          cout << "count of positives " << pos_values << endl;
+        cout << "avg of pos y values: " << sum_pos/pos_values << endl;
+    }
+    return 0;
+    
+}
+
+
+4)შეადგინეთ y= cosx/x ფუნქციის მნიშვნელობათა ცხრილის გამოთვლის პროგრამა, სადაც x არგუმენტი [-10; 25] ინტერვალში h=0,1 ბიჯით იცვლება.
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    const double step = 1.5; 
+    double x = -10.0, y; 
+    while (x <= 25.0)
+    {
+        y = cos(x)/x;
+        cout << "("<< x << setw(2) <<";"<< setw(2) << y <<")" << endl;
+        
+       x += step; 
+    }
+   
+    return 0;
+}
+
+
+5)შეადგინეთ პროგრამა C++, do/while ციკლის ოპერატორის გამოყენებით შეადგინეთ პროგრამა, რომელიც გამოთვლის y = x**2 + 5 ფუნქციის მნიშვნელობებს და წარმოადგენს ფუნქციისა და არგუმენტების მნიშვნელობათა ცხრილს სადაც x არგუმენტები [-5; 5]
+ ინტერვალში იცვლება h=1.5 ბიჯით.
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    const double step = 1.5; 
+    double x = -5.0, y; 
+     do {
+        y = pow(x, 2) + 5;
+        cout << "("<< x << setw(2) <<";"<< setw(2) << y <<")" << endl;
+        x += step;
+    } while (x <= 5.0);
+
+    return 0;
+    
+}
+
+6)შეადგინეთ პროგრამა C++ , რომელიც გამოთვლის y=x**2 + 2*x +1 ფუნქციის მნიშვნელობებს და წარმოადგენს ფუნქციისა და არგუმენტების მნიშვნელობათა ცხრილს სადაც x არგუმენტი [1;10] ინტერვალში იცვლება h=1,5 ბიჯით ამასთან თუ 
+ფუნქციის მნიშვნელობა აღმოჩნდება 50-ზე მეტი, გამოთვლითი პროცესი შეწყვიტეთ(გამოიყენეთ Break ოპერატორი)
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    const double step = 1.5; 
+    double x = 1.0, y; 
+     do {
+        y = pow(x, 2) + 2*x +1;
+        if(y > 50) break;
+        cout << "("<< x << setw(2) <<";"<< setw(2) << y <<")" << endl;
+        x += step;
+    } while (x <= 10.0);
+
+    return 0;
+    
+}
+
+// * if(y > 50) break; dawer cout is shemdeg daprintavs kidec
+
+
+7) შეადგინეთ პროგრამა C++, შეადგინეთ პროგრამა რომელიც გამოთვლის გამოსახულებათა შედეგი სისტემის მნიშვნელობას
+y = (sin(2-x)+1) / sqrt(e**(A-x))   სადაც x=2 A=2,8  b= -4,2  c=8  a=1
+z= system{ (a*x**3 – 2); y<1  (a*x**2 + b*x + c); y=1  (2*x -3); y=-1 }
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    
+  double x=2, A = 2.8, b = -4.2, c= 8,a=1, y, z ;
+   
+  y = (sin(2-x)+1)/(sqrt(exp(A-x)));
+  if(y<1){
+      z = a*pow(x, 3) - 2;
+  }else if(y == 1){
+      z = a*pow(x,2) + b*x+c;
+  }else if(y == -1){
+      z = c;
+  }else{
+      z = 2.0 * x - 3.0;
+  }
+ 
+    cout << "y  " << y << endl;
+     cout << "z  " << z << endl;
+
+  return 0;
+}
+
+
+8) შეადგინეთ პროგრამა C++, do/while ციკლის ოპერატორის გამოყენებით შეადგინეთ პროგრამა, რომელიც გამოთვლის y = 3*x**2 – 5*x ფუნქციის მნიშვნელობებს და წარმოადგენს ფუნქციისა და არგუმენტების მნიშვნელობათა ცხრილს
+ სადაც x არგუმენტები [-2; 2] ინტერვალში იცვლება h=1.5 ბიჯით.
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    const double step = 1.5; 
+    double x = -2.0, y; 
+     do {
+        y = 3 * pow(x, 2) - 5 * x;
+        cout << "("<< x << setw(2) <<";"<< setw(2) << y <<")" << endl;
+        x += step;
+    } while (x <= 2.0);
+
+    return 0;
+    
+}
+
+
+////////
+
+// switch
+
+// int main() {
+    
+//     int x, y;
+    
+//     switch(x){
+//           case 1:
+//        	 y = a*x+b;
+//           case 2:
+//           	y = a*x-b;
+//           case 3:
+//           	y = (a+b)/(x+1);
+//           case 4:
+//           	y = b*x + 2*a
+//       }
+  
+//   cout << y << endl;
+// }
+///////
+
