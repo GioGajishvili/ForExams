@@ -1,0 +1,151 @@
+1. 
+
+import java.util.Random;
+    public class Main {
+        public static void main(String[] args) {
+            int[] arr = new int[150];
+            Random rand = new Random();
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = rand.nextInt(101);
+            }
+            double sd = calculateSD2(arr);
+            System.out.println("საშუალო : " + sd);
+        }
+
+        public static double calculateSD2(int numArray[]) {
+            double sum = 0.0, standardDeviation = 0.0;
+            int length = numArray.length;
+
+            for (double num : numArray) {
+                sum += num;
+            }
+
+            double mean = sum / length;
+
+            for (double num : numArray) {
+                standardDeviation += Math.pow(num - mean, 2);
+            }
+
+            return Math.sqrt(standardDeviation / length);
+        }
+    }
+
+2.
+
+public class Main {
+    public class MeanOfOddsCalculator {
+
+        public static double calculateMeanOfOdds(int[] arr) {
+            int count = 0;
+            double sum = 0;
+
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 != 0) {
+                    sum += arr[i];
+                    count++;
+                }
+            }
+
+            if (count > 0) {
+                return sum / count;
+            } else {
+                throw new IllegalArgumentException("The input array must contain at least one odd number");
+            }
+        }
+
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+            double mean = calculateMeanOfOdds(arr);
+            System.out.println("The mean of the odd numbers in the array is: " + mean);
+        }
+    }
+}
+
+
+3. 
+
+import java.util.Objects;
+
+public class department {
+    public int id;
+    public String name;
+
+    @Override
+    public String toString() {
+        return "department{" + "id=" + id + ", name='" + name + '\'' + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        department that = (department) o;
+        return id == that.id && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+}
+
+
+4. 
+
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+
+public class XMLUtil {
+
+    private XMLUtil (){}
+
+    public static void generateXML() throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document document = documentBuilder.newDocument();
+
+
+        Element rootElement = document.createElement("departments");
+        document.appendChild(rootElement);
+
+        Element departmentElement = document.createElement("department");
+        rootElement.appendChild(departmentElement);
+
+        Element departmentName = document.createElement("name");
+        departmentName.appendChild(document.createTextNode("HR"));
+        departmentElement.appendChild(departmentName);
+
+        Element departmentEmail = document.createElement("email");
+        departmentEmail.appendChild(document.createTextNode("hr@oracle.com"));
+        departmentElement.appendChild(departmentEmail);
+
+        Element studentElement = document.createElement("department");
+        rootElement.appendChild(studentElement);
+
+        Element departmentFirstName = document.createElement("firstname");
+        departmentFirstName.appendChild(document.createTextNode("IT"));
+        studentElement.appendChild(departmentFirstName);
+
+        Element departmentEmail2 = document.createElement("email");
+        departmentEmail2.appendChild(document.createTextNode("it@java.com"));
+        studentElement.appendChild(departmentEmail2);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource domSource = new DOMSource(rootElement);
+
+        StreamResult streamResult = new StreamResult(new File("C:/a/b.xml"));
+        transformer.transform(domSource,streamResult);
+    }
+}
+
